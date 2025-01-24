@@ -6,9 +6,6 @@ import models, schemas, auth
 from datetime import timedelta
 import base64
 from fastapi.middleware.cors import CORSMiddleware
-from typing import Optional
-
-
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -35,7 +32,9 @@ def register(user: schemas.UserCreate, db: Session = Depends(get_db)):
     return db_user
 
 @app.post("/token", response_model=schemas.Token)
-async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+async def login_for_access_token(
+    form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)
+):
     user = auth.authenticate_user(db, form_data.username, form_data.password)
     if not user:
         raise HTTPException(
@@ -49,56 +48,56 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
     )
     return {"access_token": access_token, "token_type": "bearer"}
 
-@app.get("/flowers", response_model=list[schemas.Counterparty])
-async def get_flowers(db: Session = Depends(get_db), current_user: schemas.User = Depends(auth.get_current_active_user)):
-    flowers = db.query(models.Counterparty).all()
-    return flowers
-
-@app.post("/flowers", response_model=schemas.Counterparty)
-async def add_counterparty(counterparty: schemas.CounterpartyCreate, db: Session = Depends(get_db),
-                           current_user: schemas.User = Depends(auth.get_current_active_user)):
-    print("HELP")
-    if not current_user.is_admin:
-        raise HTTPException(status_code=403, detail="Not authorized")
-
-    # Создание записи контрагента в базе данных
-    db_counterparty = models.Counterparty(**counterparty.dict())  # Передаем данные из схемы
-    db.add(db_counterparty)
-    db.commit()
-    db.refresh(db_counterparty)
-    return db_counterparty
-
-
-@app.post("/upload-image")
-async def upload_image(image: str, db: Session = Depends(get_db), current_user: schemas.User = Depends(auth.get_current_active_user)):
-    if not current_user.is_admin:
-        raise HTTPException(status_code=403, detail="Not authorized")
-    try:
-        image_data = base64.b64decode(image)
-        return {"message": "Image uploaded successfully"}
-    except:
-        raise HTTPException(status_code=400, detail="Invalid image data")
-
-@app.delete("/flowers/{counterparty_id}")
-async def delete_counterparty(
-    counterparty_id: int,
+@app.get("/flowers", response_model=list[schemas.Flower])
+async def get_flowers(
     db: Session = Depends(get_db),
-    current_user: schemas.User = Depends(auth.get_current_active_user)
+    current_user: schemas.User = Depends(auth.get_current_active_user),
+):
+    return db.query(models.Flower).all()
+
+@app.post("/flowers", response_model=schemas.Flower)
+async def add_flower(
+    flower: schemas.FlowerCreate,
+    db: Session = Depends(get_db),
+    current_user: schemas.User = Depends(auth.get_current_active_user),
 ):
     if not current_user.is_admin:
         raise HTTPException(status_code=403, detail="Not authorized")
-
-    counterparty = db.query(models.Counterparty).filter(models.Counterparty.id == counterparty_id).first()
-    if not counterparty:
-        raise HTTPException(status_code=404, detail="Counterparty not found")
-
-    db.delete(counterparty)
+    db_flower = models.Flower(**flower.dict())
+    db.add(db_flower)
     db.commit()
+    db.refresh(db_flower)
+    return db_flower
 
-    return {"message": "Counterparty deleted successfully"}
+@app.post("/upload-image")
+async def upload_image(
+    image: str,
+    current_user: schemas.User = Depends(auth.get_current_active_user),
+):
+    if not current_user.is_admin:
+        raise HTTPException(status_code=403, detail="Not authorized")
+    try:
+        base64.b64decode(image)
+        return {"message": "Image uploaded successfully"}
+    except base64.binascii.Error:
+        raise HTTPException(status_code=400, detail="Invalid image data")
 
+@app.delete("/flowers/{flower_id}")
+async def delete_flower(
+    flower_id: int,
+    db: Session = Depends(get_db),
+    current_user: schemas.User = Depends(auth.get_current_active_user),
+):
+    if not current_user.is_admin:
+        raise HTTPException(status_code=403, detail="Not authorized")
+    flower = db.query(models.Flower).filter(models.Flower.id == flower_id).first()
+    if not flower:
+        raise HTTPException(status_code=404, detail="Flower not found")
+    db.delete(flower)
+    db.commit()
+    return {"message": "Flower deleted successfully"}
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
 
+    uvicorn.run(app, host="0.0.0.0", port=8000)

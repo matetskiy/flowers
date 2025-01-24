@@ -2,24 +2,29 @@
   <h2>Каталог цветов</h2>
   <div class="sort-container">
     <button (click)="toggleSortOrder()" class="sort-button">
-      Сортировать по имени: {{ sortOrder === 'asc' ? '↑' : '↓' }}
+      Сортировать по имени: {{ sortOrder === 'asc' ? '↓' : '↑' }}
+    </button>
+    <button (click)="toggleAvailabilitySort()" class="sort-button">
+      Сортировать по доступности: {{ availabilitySortOrder === 'asc' ? '↑' : '↓' }}
     </button>
   </div>
   <div class="flowers">
-    <div *ngFor="let flower of displayedFlowers" class="flower-card">
+    <div *ngFor="let flower of displayedFlowers" class="flower-card"
+         [ngClass]="{ 'not-available-card': !flower.availability }">
       <img
         *ngIf="flower.image"
         [src]="'data:image/jpeg;base64,' + flower.image"
         [alt]="flower.name"
         class="flower-image"
+        [ngClass]="{ 'not-available-image': !flower.availability }"
       />
       <h3>{{ flower.name }}</h3>
       <p><strong>Описание:</strong> {{ flower.description }}</p>
-      <p><strong>Цена:</strong> {{ flower.price | currency: 'RUB' }}</p>
+      <p><strong>Цена:</strong> {{ flower.price }} руб.</p>
       <p><strong>Количество на складе:</strong> {{ flower.stock }}</p>
       <p><strong>Цвет:</strong> {{ flower.color }}</p>
       <p><strong>Категория:</strong> {{ flower.category }}</p>
-      <p><strong>Тип цветка:</strong> {{ flower.flowerType }}</p>
+      <p><strong>Тип цветка:</strong> {{ flower.flower_type}}</p>
       <p><strong>Размер:</strong> {{ flower.size }}</p>
       <p *ngIf="flower.careTips"><strong>Советы по уходу:</strong> {{ flower.careTips }}</p>
       <p>

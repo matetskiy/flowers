@@ -1,0 +1,154 @@
+.flower-list {
+  padding: 40px;
+  background-color: #fafafa;
+  border-radius: 15px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 2% auto;
+}
+
+h2 {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  color: #34495e;
+  margin-bottom: 35px;
+  text-transform: uppercase;
+}
+
+.sort-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 25px;
+}
+
+.sort-button {
+  background-color: #C8E6C9;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 18px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.sort-button:hover {
+  background-color: #FFECB3;
+  transform: translateY(-4px);
+}
+
+.flowers {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.flower-card {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flower-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+}
+
+.flower-card .flower-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.flower-card h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 18px;
+}
+
+.available {
+  color: #27ae60;
+}
+
+.not-available {
+  color: #e74c3c;
+}
+
+.not-available-card {
+  background-color: #f2f2f2;
+}
+
+.not-available-image {
+  opacity: 0.5;
+  filter: grayscale(100%);
+}
+
+.flower-card p {
+  font-size: 17px;
+  color: #7f8c8d;
+  margin: 10px 0;
+}
+
+.flower-card p strong {
+  font-weight: 700;
+}
+
+.delete-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 25px;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+  transform: translateY(-4px);
+}
+
+.delete-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .flower-list {
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+
+  .flower-card {
+    padding: 20px;
+  }
+
+  .flower-card h3 {
+    font-size: 20px;
+  }
+
+  .delete-button,
+  .sort-button {
+    padding: 10px 14px;
+    font-size: 16px;
+  }
+}

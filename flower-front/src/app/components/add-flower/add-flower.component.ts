@@ -21,7 +21,7 @@ export class AddFlowerComponent implements OnInit {
     color: '',
     category: '',
     image: '',
-    flowerType: '',
+    flower_type: '',
     size: '',
     careTips: '',
     availability: true

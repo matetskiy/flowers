@@ -11,7 +11,9 @@
   text-align: center;
   font-size: 24px;
   margin-bottom: 20px;
-  color: #000000;
+  color: #000000; /* Светлый цвет текста */
+  font-weight: 700;
+  text-shadow: 2px 2px 8px rgb(165, 165, 165); /* Тень для выделения */
 }
 
 form {
@@ -28,7 +30,7 @@ form div {
 form label {
   font-size: 18px;
   font-weight: 600;
-  color: #555;
+  color: #4E4E4E; /* Темно-серый для текста */
   margin-bottom: 5px;
 }
 
@@ -46,7 +48,7 @@ form select {
 form input:focus,
 form textarea:focus,
 form select:focus {
-  border-color: #FF7E39;
+  border-color: #FFECB3; /* Нежный пастельный желтый для фокуса */
 }
 
 form textarea {
@@ -56,19 +58,27 @@ form textarea {
 
 button {
   padding: 12px;
-  background-color: #FF7E39;
-  color: #fff;
+  background-color: #C8E6C9; /* Нежно-зеленый */
+  color: #4E4E4E; /* Темно-серый для текста */
   font-size: 16px;
   font-weight: bold;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
   margin-top: 20px;
 }
 
 button:hover {
-  background-color: #FFAA00;
+  background-color: #FFECB3; /* Нежный пастельный желтый */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  background-color: #FFE0B2; /* Мягкий теплый персиковый */
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 button:disabled {

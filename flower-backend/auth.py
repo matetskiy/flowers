@@ -9,7 +9,7 @@ import models, schemas
 from typing import Optional
 
 
-SECRET_KEY = "kLQMQzJa83YOodVMiSQP01H0QcEUmsyZ"
+SECRET_KEY = "88pweFAtgw25tUdrim8gpyZ2THGpa4jq"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 

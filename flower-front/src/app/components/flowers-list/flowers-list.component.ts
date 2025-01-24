@@ -12,7 +12,7 @@ interface Flower {
   color: string;
   category: string;
   image: string;
-  flowerType: string;
+  flower_type: string;
   size: string;
   careTips: string;
   availability: boolean;
@@ -30,6 +30,7 @@ export class FlowersListComponent implements OnInit {
   displayedFlowers: Flower[] = [];
   isAdmin = false;
   sortOrder: "asc" | "desc" = "desc";
+  availabilitySortOrder: "asc" | "desc" = "asc";
 
   constructor(
     private flowerService: FlowerService,
@@ -45,6 +46,7 @@ export class FlowersListComponent implements OnInit {
     this.flowerService.getFlowers().subscribe(
       (flowers) => {
         this.flowers = flowers;
+        this.displayedFlowers = [...this.flowers];
         this.sortFlowersByName();
       },
       (error) => {
@@ -77,8 +79,21 @@ export class FlowersListComponent implements OnInit {
     });
   }
 
+  sortFlowersByAvailability() {
+    this.displayedFlowers = [...this.flowers].sort((a, b) => {
+      return this.availabilitySortOrder === "asc"
+        ? Number(a.availability) - Number(b.availability)
+        : Number(b.availability) - Number(a.availability);
+    });
+  }
+
   toggleSortOrder() {
     this.sortOrder = this.sortOrder === "asc" ? "desc" : "asc";
     this.sortFlowersByName();
+  }
+
+  toggleAvailabilitySort() {
+    this.availabilitySortOrder = this.availabilitySortOrder === "asc" ? "desc" : "asc";
+    this.sortFlowersByAvailability();
   }
 }

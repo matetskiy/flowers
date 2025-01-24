@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Путь до каталогов
-ANGULAR_PROJECT_DIR="$(pwd)/partners-hub-front"
-FASTAPI_PROJECT_DIR="$(pwd)/partners-hub-backend"
+ANGULAR_PROJECT_DIR="$(pwd)/flower-front"
+FASTAPI_PROJECT_DIR="$(pwd)/flower-backend"
 FASTAPI_PORT=8000  # Порт для FastAPI
 
 # Проверка существования Angular проекта
