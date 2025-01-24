@@ -46,11 +46,11 @@ export class FlowerService {
     if (error.status === 400) {
       if (error.url.includes('/flowers')) {
         if (error.url.endsWith('/flowers')) {
-          errorMessage = 'Не удалось загрузить список контрагентов';
+          errorMessage = 'Не удалось загрузить список цветов';
         } else if (error.url.includes('/flowers/') && error.url.match(/\d+$/)) {
-          errorMessage = 'Не удалось удалить контрагента';
+          errorMessage = 'Не удалось удалить цветок';
         } else {
-          errorMessage = 'Не удалось добавить контрагента';
+          errorMessage = 'Не удалось добавить цветок';
         }
       } else {
         errorMessage = 'Не удалось обработать запрос';
@@ -58,7 +58,7 @@ export class FlowerService {
     } else if (error.status === 500) {
       errorMessage = 'Серверная ошибка';
     } else if (error.status === 404) {
-      errorMessage = 'Не удалось найти контрагента';
+      errorMessage = 'Не удалось найти цветок';
     }
 
     return throwError(errorMessage);

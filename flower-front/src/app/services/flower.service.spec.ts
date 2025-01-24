@@ -25,16 +25,16 @@ describe('flowerService', () => {
     httpMock.verify();
   });
 
-  it('должен обрабатывать ошибку при получении списка контрагентов', () => {
+  it('должен обрабатывать ошибку при получении списка цветов', () => {
     const errorResponse = {
       status: 400,
       statusText: 'Bad Request'
     };
 
     service.getFlowers().subscribe(
-      () => fail('Ожидалась ошибка, но список контрагентов был загружен'),
+      () => fail('Ожидалась ошибка, но список цветов был загружен'),
       (error) => {
-        expect(error).toBe('Не удалось загрузить список контрагентов');
+        expect(error).toBe('Не удалось загрузить список цветов');
       }
     );
 
@@ -43,7 +43,7 @@ describe('flowerService', () => {
   });
 
 
-  it('должен обрабатывать ошибку при удалении контрагента', () => {
+  it('должен обрабатывать ошибку при удалении цветок', () => {
     const flowerId = 1;
     const errorResponse = {
       status: 400,
@@ -51,9 +51,9 @@ describe('flowerService', () => {
     };
 
     service.deleteFlower(flowerId).subscribe(
-      () => fail('Ожидалась ошибка, но контрагент был удален'),
+      () => fail('Ожидалась ошибка, но цветок был удален'),
       (error) => {
-        expect(error).toBe('Не удалось удалить контрагента');
+        expect(error).toBe('Не удалось удалить цветок');
       }
     );
 
@@ -63,7 +63,7 @@ describe('flowerService', () => {
 
 
 
-  it('должен обрабатывать ошибку сервера при получении списка контрагентов', () => {
+  it('должен обрабатывать ошибку сервера при получении списка цветов', () => {
     const errorResponse = {
       status: 500,
       statusText: 'Server Error',
@@ -71,7 +71,7 @@ describe('flowerService', () => {
     };
 
     service.getFlowers().subscribe(
-      () => fail('Ожидалась ошибка, но был получен список контрагентов'),
+      () => fail('Ожидалась ошибка, но был получен список цветов'),
       (error) => {
         expect(error).toBe('Серверная ошибка');
       }
@@ -81,7 +81,7 @@ describe('flowerService', () => {
     req.flush('Server error', errorResponse);
   });
 
-  it('должен обрабатывать ошибку 404 при получении списка контрагентов', () => {
+  it('должен обрабатывать ошибку 404 при получении списка цветов', () => {
     const errorResponse = {
       status: 404,
       statusText: 'Not Found',
@@ -89,9 +89,9 @@ describe('flowerService', () => {
     };
 
     service.getFlowers().subscribe(
-      () => fail('Ожидалась ошибка, но был получен список контрагентов'),
+      () => fail('Ожидалась ошибка, но был получен список цветов'),
       (error) => {
-        expect(error).toBe('Не удалось найти контрагента');
+        expect(error).toBe('Не удалось найти цветок');
       }
     );
 
