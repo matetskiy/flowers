@@ -1,0 +1,56 @@
+<div class="add-flower-container">
+  <h2>Добавление цветов</h2>
+  <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <div>
+      <label for="name">Название:</label>
+      <input type="text" id="name" [(ngModel)]="flower.name" name="name" required />
+    </div>
+    <div>
+      <label for="description">Описание:</label>
+      <textarea id="description" [(ngModel)]="flower.description" name="description" required></textarea>
+    </div>
+    <div>
+      <label for="price">Цена:</label>
+      <input type="number" id="price" [(ngModel)]="flower.price" name="price" required />
+    </div>
+    <div>
+      <label for="stock">Количество на складе:</label>
+      <input type="number" id="stock" [(ngModel)]="flower.stock" name="stock" required />
+    </div>
+    <div>
+      <label for="color">Цвет:</label>
+      <input type="text" id="color" [(ngModel)]="flower.color" name="color" required />
+    </div>
+    <div>
+      <label for="category">Категория:</label>
+      <input type="text" id="category" [(ngModel)]="flower.category" name="category" required />
+    </div>
+    <div>
+      <label for="flowerType">Тип цветка:</label>
+      <select id="flowerType" [(ngModel)]="flower.flowerType" name="flowerType">
+        <option value="Однолетник">Однолетник</option>
+        <option value="Многолетник">Многолетник</option>
+      </select>
+    </div>
+    <div>
+      <label for="size">Размер:</label>
+      <input type="text" id="size" [(ngModel)]="flower.size" name="size" />
+    </div>
+    <div>
+      <label for="careTips">Советы по уходу:</label>
+      <textarea id="careTips" [(ngModel)]="flower.careTips" name="careTips"></textarea>
+    </div>
+    <div>
+      <label for="availability">Доступность:</label>
+      <select id="availability" [(ngModel)]="flower.availability" name="availability">
+        <option [value]="true">Доступен</option>
+        <option [value]="false">Недоступен</option>
+      </select>
+    </div>
+    <div>
+      <label for="image">Изображение:</label>
+      <input type="file" id="image" (change)="onFileSelected($event)" accept="image/*" />
+    </div>
+    <button type="submit">Добавить товар</button>
+  </form>
+</div>

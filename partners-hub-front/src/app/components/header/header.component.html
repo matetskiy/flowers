@@ -1,0 +1,19 @@
+<header>
+  <div class="header-content">
+    <div class="catalog-title">
+      <a routerLink="/flowers">Цветочная Симфония</a>
+    </div>
+    <nav>
+      <div class="nav-buttons">
+        <button *ngIf="authService.isLoggedIn()" routerLink="/flowers">Цветы</button>
+        <button *ngIf="isAdmin()" routerLink="/add-flower">Добавление цветов</button>
+        <button *ngIf="authService.isLoggedIn()" (click)="logout()">Выход</button>
+        <button *ngIf="!authService.isLoggedIn()" routerLink="/login">Авторизация</button>
+        <button *ngIf="!authService.isLoggedIn()" routerLink="/register">Регистрация</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+
+

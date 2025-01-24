@@ -1,0 +1,93 @@
+/* login.component.css */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(90deg, #F8BBD0, #B3E5FC);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.login-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  margin: 5% auto;
+}
+
+h2 {
+  font-size: 32px;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+form div {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+label {
+  font-size: 16px;
+  color: #666;
+  display: block;
+  margin-bottom: 8px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+input:focus {
+  border-color: #FFECB3; /* Оранжевый цвет */
+  outline: none;
+}
+
+button {
+  background-color: #C8E6C9; /* Нежно-зеленый фон кнопки */
+  color: #4E4E4E; /* Нейтральный темно-серый */
+  padding: 14px 22px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #FFECB3; /* Нежный пастельный желтый при наведении */
+}
+
+button:active {
+  background-color: #FFE0B2; /* Мягкий персиковый при нажатии */
+}
+
+button:disabled {
+  background-color: #d6d6d6;
+  cursor: not-allowed;
+}
+/* Стиль для уведомления об ошибке */
+.error-message {
+  color: red;
+  font-size: 16px;
+  margin-top: 20px;
+  font-weight: bold;
+}
