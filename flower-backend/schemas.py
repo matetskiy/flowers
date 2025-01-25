@@ -13,7 +13,7 @@ class User(BaseModel):
     is_admin: bool
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class FlowerBase(BaseModel):
     name: str
@@ -35,7 +35,7 @@ class Flower(FlowerBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class Token(BaseModel):
     access_token: str
